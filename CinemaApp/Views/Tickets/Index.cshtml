@@ -1,0 +1,78 @@
+﻿@model List<CinemaApp.Models.Ticket>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    
+     <div class="d-flex justify-content-end mb-2">
+        <a class="btn btn-success" asp-controller="Tickets" asp-action="Create">Add New Ticket</a>
+     </div>
+    
+    <form method="post">
+        <div class="row">
+                <span for="FilterDate">Valid Dates Filter:&emsp;</span>
+
+                <input class="form-control w-25" type="date" name="FilterDate" id="FilterDate" />
+                <div class="col-1">
+                <button class="btn btn-success btn-block" type="submit">Filter</button>
+                </div>
+        </div>
+    </form>
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        var item = Model[i];
+
+        if (i % 3 == 0)
+        {
+            @:<div class="row">
+            }
+
+
+            <div class="col-md-3 m-4" id="card">
+                <div class="card" style="width: 18rem; height: 55rem;">
+                    <img class="card-img-top" src="@item.TicketImage" style="height: 50%" alt="Image for product!" />
+
+                    <div class="card-body">
+                        <h3 class="card-title">@item.TicketName</h3>
+
+                        <hr>
+                        
+                        <h6 class="card-text">@item.TicketDescription</h6>
+                        
+                        <hr>
+                        
+                        <h4 class="card-text">@item.SelectedGenre</h4>
+                        
+                        <hr>
+                        
+                        <span style="font-weight: bold">Valid until: </span>
+                        
+                        <p class="card-text">@item.DateValid</p>
+                        
+                        <hr>
+                        
+                        <h3>Price: @item.TicketPrice</h3>
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-between">
+                        <a asp-controller="Tickets" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <a asp-controller="Tickets" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger ms-auto">Delete</a>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            if (i % 3 == 2)
+            {
+            @:</div>
+        }
+    }
+
+</div>
+
