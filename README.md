@@ -1,1 +1,1 @@
-Simple ASP .Net COre Web Application for Movie Tickets
+Simple ASP .Net Core Web Application for Movie Tickets
